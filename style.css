@@ -1,0 +1,25 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 500px;
+
+  /* center*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  height: 100%;
+  background-image: url("images/tabletop.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
