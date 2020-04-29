@@ -1,0 +1,65 @@
+import { Card } from "./card.js";
+import { Board } from "./board.js";
+
+export class Card {
+  constructor() {
+    this.flipped = false;
+    this.name = null;
+    this.image = null;
+  }
+
+  getElement() {}
+
+  isMatch(secondCard) {
+    return this.name === secondCard.name;
+  }
+}
+
+class Game {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.board = [];
+    this.creatures = [
+      "Ampharos",
+      "Arkani",
+      "Bisasam",
+      "Endivie",
+      "Feurigel",
+      "Gengar",
+      "Karnimani",
+      "Keifel",
+      "Lapras",
+      "Relaxo",
+    ];
+  }
+
+  start() {
+    this.board = this.createBoard();
+    this.randomizeCards(this.board);
+    this.bindHandlers();
+  }
+
+  render() {}
+
+  createBoard() {
+    card = new Card();
+    // Schleife
+    board[index] = card;
+  }
+
+  twoClicked() {
+    if (this.board[firstClickIndex].isMatch(this.board[secondClick])) {
+      // Match! BELOHNUNG!
+    } else {
+      // Zurücksetzen
+    }
+  }
+}
+
+const onDomReady = () => {
+  const game = new Game(10, 5);
+  game.start();
+};
+
+document.addEventListener("DOMContentLoaded", onDomReady);

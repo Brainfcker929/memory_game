@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function flipCard() {
+    if (cardsChosen.length === 2) return;
     var cardId = this.getAttribute("data-id");
 
     if (this.getAttribute("src") === "images/blank.png") {
