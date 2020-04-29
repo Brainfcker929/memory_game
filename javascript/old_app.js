@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createBoard() {
     for (let i = 0; i < playingCards.length; i++) {
       var card = document.createElement("img");
-      card.setAttribute("src", "images/background.png");
+      card.setAttribute("src", "../images/background.png");
       card.setAttribute("data-id", i);
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cardsChosen.length === 2) return;
     var cardId = this.getAttribute("data-id");
 
-    if (this.getAttribute("src") === "images/blank.png") {
+    if (this.getAttribute("src") === "../images/blank.png") {
       alert("Wähl eine Karte");
-    } else if (this.getAttribute("src") === "images/background.png") {
+    } else if (this.getAttribute("src") === "../images/background.png") {
       cardsChosen.push(playingCards[cardId]);
 
       if (cardsChosenId.indexOf(cardId) === -1) cardsChosenId.push(cardId);
-      this.setAttribute("src", "images/" + playingCards[cardId] + ".png");
+      this.setAttribute("src", "../images/" + playingCards[cardId] + ".png");
 
       if (cardsChosen.length === 2) {
         setTimeout(checkForMatch, 1000);
@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const optionTwoId = cardsChosenId[1];
 
     if (cardsChosen[0] === cardsChosen[1]) {
-      cards[optionOneId].setAttribute("src", "images/blank.png");
-      cards[optionTwoId].setAttribute("src", "images/blank.png");
+      cards[optionOneId].setAttribute("src", "../images/blank.png");
+      cards[optionTwoId].setAttribute("src", "../images/blank.png");
       cardsWon.push(cardsChosen);
     } else {
-      cards[optionOneId].setAttribute("src", "images/background.png");
-      cards[optionTwoId].setAttribute("src", "images/background.png");
+      cards[optionOneId].setAttribute("src", "../images/background.png");
+      cards[optionTwoId].setAttribute("src", "../images/background.png");
     }
     cardsChosen = [];
     cardsChosenId = [];
