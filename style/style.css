@@ -1,14 +1,16 @@
+.container {
+  width: 1500px;
+  height: 1500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -25%;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
-  height: 400px;
-  width: 500px;
 
   /* center*/
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 body {
@@ -16,10 +18,63 @@ body {
   background-image: url("../images/tabletop.jpg");
   background-repeat: repeat-y;
   background-size: cover;
+  padding: 20px;
 }
 
 h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  font-size: 3em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* entire container, keeps perspective */
+.card {
+  perspective: 1000px;
+}
+/* flip the pane when hovered */
+.card.is-flipped {
+  transform: rotateY(180deg) scale(1.1);
+  z-index: 3;
+  box-shadow: 0px 20px 20px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card,
+.cardFront,
+.cardBack {
+  width: 300px;
+  height: 300px;
+  transition: all 0.8s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* flip speed goes here */
+.cardInner {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.cardFront,
+.cardBack {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* cardFront pane, placed above back */
+.cardFront {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.cardBack {
+  transform: rotateY(180deg);
 }
