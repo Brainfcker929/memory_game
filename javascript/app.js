@@ -1,4 +1,3 @@
-import { Card } from "./card.js";
 import { Game } from "./game.js";
 
 const onDomReady = () => {

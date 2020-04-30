@@ -14,7 +14,7 @@ export class Game {
       "Relaxo",
     ];
     this.board = this.createBoard();
-    this.cardsWon = [];
+    this.cardsWon = 0;
     this.cardsChosen = [];
   }
   createBoard() {
@@ -36,6 +36,7 @@ export class Game {
 
   onCardClick(event) {
     let cardIndex = event.target.dataset.id;
+    console.log(event)
     let card = this.board[cardIndex];
 
     if (this.shouldIgnoreClick(card)) {
@@ -69,13 +70,15 @@ export class Game {
   }
 
   shouldIgnoreClick(card) {
+    console.log(card)
     return this.isCardChosen(card) || this.cardsChosen.length === 2 || card.uncovered;
   }
 
   takeOrCover() {
     setTimeout(() => {
       if (this.isMatch()) {
-        this.cardsWon++;
+        this.cardsWon += 1;
+        console.log(this.cardsWon)
         this.cardsChosen[0].take();
         this.cardsChosen[1].take();
       } else {
@@ -84,6 +87,6 @@ export class Game {
       }
       this.cardsChosen = [];
       this.resultDisplay("#result");
-    }, 1000);
+    }, 800);
   }
 }
