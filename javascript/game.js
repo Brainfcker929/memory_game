@@ -75,7 +75,7 @@ export class Game {
   takeOrCover() {
     setTimeout(() => {
       if (this.isMatch()) {
-        this.cardsWon += 1;
+        this.cardsWon++;
         this.cardsChosen[0].take();
         this.cardsChosen[1].take();
       } else {
