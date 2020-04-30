@@ -1,3 +1,4 @@
+import { Game } from "./game.js";
 export class Card {
   constructor(name) {
     this.facedup = false;
@@ -8,17 +9,25 @@ export class Card {
   render(index) {
     this.cardEl.setAttribute("src", "../images/background.png");
     this.cardEl.setAttribute("data-id", index);
-    this.cardEl.addEventListener("click", () => {
-      this.flip();
-    });
     return this.cardEl;
   }
 
-  flip() {
+  uncover() {
     this.facedup = !this.facedup;
+
     if (this.facedup) {
       this.cardEl.setAttribute("src", `../images/${this.name}.png`);
     }
+  }
+
+  cover() {
+    this.facedup = !this.facedup;
+    if (this.facedup === false)
+      this.cardEl.setAttribute("src", "../images/background.png");
+  }
+
+  take() {
+    this.cardEl.setAttribute("src", "../images/blank.png");
   }
 
   isMatch(secondCard) {
