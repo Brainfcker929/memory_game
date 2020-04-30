@@ -1,8 +1,6 @@
 import { Card } from "./card.js";
 export class Game {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor() {
     this.creatures = [
       "Ampharos",
       "Arkani",
@@ -35,32 +33,49 @@ export class Game {
       grid.appendChild(cardEl);
     });
   }
+
   onCardClick(event) {
     let cardIndex = event.target.dataset.id;
     let card = this.board[cardIndex];
 
-    if (this.cardsChosen.length <= 2) {
-      this.cardsChosen.push(card);
+    if (this.shouldIgnoreClick(card)) {
+      return;
+    }
 
+    if (this.cardsChosen.length < 2) {
+      this.cardsChosen.push(card);
       card.uncover();
-      if (this.cardsChosen.length === 2) {
-        this.takeOrCover();
-      }
+    }
+
+    if (this.cardsChosen.length === 2) {
+      this.takeOrCover();
     }
   }
 
-  result(domSelector) {
-    const resultDisplay = document.querySelector(domSelector);
-    resultDisplay.textContent = this.cardsWon.length;
+  isCardChosen(secondCard) {
+    return this.cardsChosen.some((firstCard) => firstCard.index === secondCard.index);
   }
+
+  resultDisplay(domSelector) {
+    const resultDisplay = document.querySelector(domSelector);
+    resultDisplay.textContent = this.cardsWon;
+    if (this.cardsWon === this.creatures.length) {
+      resultDisplay.textContent = "Winner winner chicken dinner!";
+    }
+  }
+
   isMatch() {
     return this.cardsChosen[0].isMatch(this.cardsChosen[1]);
+  }
+
+  shouldIgnoreClick(card) {
+    return this.isCardChosen(card) || this.cardsChosen.length === 2 || card.uncovered;
   }
 
   takeOrCover() {
     setTimeout(() => {
       if (this.isMatch()) {
-        this.cardsWon.push(this.cardsChosen);
+        this.cardsWon += 1;
         this.cardsChosen[0].take();
         this.cardsChosen[1].take();
       } else {
@@ -68,7 +83,7 @@ export class Game {
         this.cardsChosen[1].cover();
       }
       this.cardsChosen = [];
-      this.result("#result");
+      this.resultDisplay("#result");
     }, 1000);
   }
 }
