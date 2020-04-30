@@ -26,6 +26,7 @@ export class Card {
 
   take() {
     this.cardEl.setAttribute("src", "../images/blank.png");
+    this.cardEl.setAttribute("style", "opacity: 0.5");
   }
 
   isMatch(secondCard) {
